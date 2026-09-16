@@ -9,8 +9,6 @@ char* str_alloc(const char* src) {
         ++len;
 
     char* dst = new char[len + 1];
-    if (dst == nullptr)
-        return nullptr;
 
     for (std::size_t i = 0; i <= len; ++i)
         dst[i] = src[i];
@@ -36,9 +34,6 @@ void str_copy(char* dst, const char* src) {
         return;
 
     int* len = new int(0);
-    if (len == nullptr) {
-        return;
-    }
 
     while (src[*len] != '\0') {
         std::cout << src[*len];
@@ -48,6 +43,10 @@ void str_copy(char* dst, const char* src) {
 
     for (int i = 0; i <= *len; ++i)
         dst[i] = src[i];
+
+    if(len!=nullptr)
+        delete len;
+    len = nullptr;
 }
 
 void str_delete(char*& s) {
@@ -63,9 +62,10 @@ void str_print(const char* s) {
         return;
 
     while (*s != '\0') {
-        std::cout << *s << std::endl;
+        std::cout << *s;
         ++s;
     }
+    std::cout << "\n";
 }
 
 void str_to_upper(char* s) {
@@ -76,6 +76,7 @@ void str_to_upper(char* s) {
         if (*s > 'a' && *s < 'z') {
             *s = ((*s) - 32);
         }
+        s++;
     }
 }
 
@@ -87,7 +88,37 @@ size_t str_count_char(const char* s, char ch) {
     while (*s != '\0') {
         if (*s == ch)
             size++;
+        s++;
     }
 
     return size;
 }
+
+char* str_input() {
+    size_t alloc = 2;
+    size_t len = 0;
+    char* str = new char[alloc];
+    int c = getchar();
+
+    while (c != '\n' && c != EOF) {
+        if (c == (int)' ') {
+            c = getchar();
+            continue;
+        }   
+        if (len + 1 >= alloc) {
+            alloc += 1;
+
+            char* new_str = new char[alloc];
+            for (std::size_t i = 0; i < len; ++i)
+                new_str[i] = str[i]; 
+            if (str != nullptr) 
+                delete[] str; 
+            str = new_str;
+        }
+        str[len++] = (char)c;
+        c = getchar();
+    }
+    str[len] = '\0';
+    return str;
+}
+       

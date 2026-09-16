@@ -22,11 +22,24 @@ enable_testing()
 
 add_executable(
     laba_oop_s3_n1
-    laba_oop_s3_n1.cpp
-    laba_oop_s3_n1.h
-    str_ops.cpp
-    str_ops.h
+    main.cpp
+    src/str_ops.cpp
+    src/str_ops.h
 )
+
+#add_executable(
+#    str_tests
+#    tests/test_alloc.cpp
+#    tests/test_len.cpp
+#    tests/test_main.cpp
+#    tests/test_pressure.cpp
+#    tests/test_str_copy.cpp
+#    tests/test_str_count_char.cpp
+#    tests/test_str_delete.cpp
+#    tests/test_str_input.cpp
+#    tests/test_str_print.cpp
+#    tests/test_str_to_upper.cpp
+#)
 
 target_link_libraries(
     laba_oop_s3_n1
@@ -36,4 +49,4 @@ target_link_libraries(
 
 include(GoogleTest)
 
-#gtest_discover_tests(laba_oop_s3_n1)
+#gtest_discover_tests(str_tests)
