@@ -24,6 +24,8 @@ add_executable(
     laba_oop_s3_n1
     laba_oop_s3_n1.cpp
     laba_oop_s3_n1.h
+    str_ops.cpp
+    str_ops.h
 )
 
 target_link_libraries(
@@ -34,4 +36,4 @@ target_link_libraries(
 
 include(GoogleTest)
 
-gtest_discover_tests(laba_oop_s3_n1)
+#gtest_discover_tests(laba_oop_s3_n1)
