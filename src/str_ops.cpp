@@ -33,20 +33,16 @@ void str_copy(char* dst, const char* src) {
     if (src == nullptr || dst==nullptr)
         return;
 
-    int* len = new int(0);
+    int len = 0;
 
-    while (src[*len] != '\0') {
-        std::cout << src[*len];
+    while (src[len] != '\0') {
+        std::cout << src[len];
         len++;
     }
     std::cout << "\n";
 
-    for (int i = 0; i <= *len; ++i)
+    for (int i = 0; i <= len; ++i)
         dst[i] = src[i];
-
-    if(len!=nullptr)
-        delete len;
-    len = nullptr;
 }
 
 void str_delete(char*& s) {
@@ -73,7 +69,7 @@ void str_to_upper(char* s) {
         return;
 
     while (*s != '\0') {
-        if (*s > 'a' && *s < 'z') {
+        if (*s >= 'a' && *s <= 'z') {
             *s = ((*s) - 32);
         }
         s++;
