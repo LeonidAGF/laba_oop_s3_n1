@@ -2,6 +2,7 @@
 
 int main()
 {
+
 	char in;
 	char* in_str = nullptr;
 	char* buff = nullptr;
@@ -11,7 +12,10 @@ int main()
 
 		std::cout << "1.input string\n2.print\n3.length\n4.copy to buffer and print\n5.to_upper\n6.count inputed char\n0.exit\n";
 
-		std::cin >> in;
+		if (!(std::cin >> in)) { 
+			std::cin.clear();
+			break;
+		}
 
 		if (in == '1') {
 			if (in_str != nullptr) {
@@ -39,7 +43,10 @@ int main()
 		}
 		else if (in == '6') {
 
-			std::cin >> in_c;
+			if (!(std::cin >> in_c)) {
+				std::cin.clear();
+				break;
+			}
 			std::cout << str_count_char(in_str, in_c) << "\n";
 
 		}
@@ -51,6 +58,7 @@ int main()
 				delete[] buff;
 				buff = nullptr;
 			}
+			std::cin.clear();
 			return 0;
 		}
 		else
@@ -65,5 +73,6 @@ int main()
 	if (in_str != nullptr)
 		delete[] in_str;
 	in_str = nullptr;
+	std::cin.clear();
 	return 0;
 }
